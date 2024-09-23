@@ -14,10 +14,11 @@ const Footer = () => {
         <div className="footer__wrapper">
           {/* Контактная информация с иконками */}
           <div className="contact-info">
-            <div className="contact-item">
-              <img src={phoneIcon} alt="Phone" className="icon" />
-              <p>Телефон: +373 6300/10/19</p>
-            </div>
+          <div className="contact-item">
+            <img src={phoneIcon} alt="Phone" className="icon" />
+            <a href="tel:+37369070479" className="phone-link">Телефон: +37369070479</a>
+          </div>
+
             <div className="contact-item">
               <img src={emailIcon} alt="Email" className="icon" />
               <p>Email: vitmservice@mail.ru</p>
