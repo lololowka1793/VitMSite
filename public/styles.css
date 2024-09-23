@@ -11,9 +11,3 @@
     justify-content: center;
     align-items: center;
 }
-
-/* Опционально: можно настроить размеры GIF */
-#preloader img {
-    width: 150px; /* Задайте свои размеры */
-    height: 150px;
-}
