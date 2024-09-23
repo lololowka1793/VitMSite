@@ -1,7 +1,14 @@
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import './style.css';
 
 const Navbar = () => {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
+    };
+
     const activeLink = 'nav-list__link nav-list__link--active';
     const normalLink = 'nav-list__link';
 
@@ -13,7 +20,13 @@ const Navbar = () => {
                         <strong>Vit&M</strong> AutoService
                     </NavLink>
 
-                    <ul className="nav-list">
+                    <div className={`hamburger ${isMenuOpen ? 'open' : ''}`} onClick={toggleMenu}>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                    <ul className={`nav-list ${isMenuOpen ? 'open' : ''}`}>
                         <li className="nav-list__item">
                             <NavLink
                                 to="/"
@@ -57,13 +70,12 @@ const Navbar = () => {
                                 Акции
                             </NavLink>
                         </li>
-						<li className="nav-list__item">
+                        <li className="nav-list__item">
                             <NavLink to="/booking" className="nav-btn">
-                        Записаться Онлайн
-                    </NavLink>
+                                Записаться Онлайн
+                            </NavLink>
                         </li>
                     </ul>
-					
                 </div>
             </div>
         </nav>

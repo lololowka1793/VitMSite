@@ -86,3 +86,71 @@
 .nav-btn:active {
     transform: scale(0.98); /* Легкий эффект при нажатии */
 }
+
+
+/* Стиль для гамбургер-иконки */
+.hamburger {
+    display: none;
+    cursor: pointer;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 25px;
+    height: 20px;
+}
+
+.hamburger span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: var(--nav-text);
+    transition: all 0.3s ease;
+}
+
+/* Открытое меню */
+.hamburger.open span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+
+.hamburger.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.open span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+/* Скрываем гамбургер-меню на больших экранах */
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+
+    /* Скрываем меню по умолчанию на мобильных */
+    .nav-list {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: var(--nav-bg);
+        padding: 20px 0;
+        text-align: center;
+    }
+
+    /* Когда меню открыто, показываем его */
+    .nav-list.open {
+        display: flex;
+    }
+
+    .nav-list__item {
+        margin: 10px 0;
+    }
+}
+
+/* На больших экранах показываем стандартный навбар */
+@media (min-width: 769px) {
+    .nav-list {
+        display: flex;
+    }
+}
