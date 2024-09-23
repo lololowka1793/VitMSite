@@ -7,11 +7,12 @@ const Contacts = () => {
 		<div className="contacts-wrapper">
 		  {/* Contact Information */}
 		  <div className="contact-info">
-			<h3>Телефоны</h3>
-			<p><strong>+373 69 070 479</strong> (Виталий)</p>
-			<p><strong>+373 79 523 732</strong> (Михаил)</p>
-			<p><strong>+373 78 244 172</strong> (Иван)</p>
-			<p><strong>+373 79 806 292</strong> (Магазин)</p>
+  			<h3>Телефоны</h3>
+  				<p><strong><a href="tel:+37369070479">+373 69 070 479</a></strong> (Виталий)</p>
+  				<p><strong><a href="tel:+37379523732">+373 79 523 732</a></strong> (Михаил)</p>
+  				<p><strong><a href="tel:+37378244172">+373 78 244 172</a></strong> (Иван)</p>
+  				<p><strong><a href="tel:+37379806292">+373 79 806 292</a></strong> (Магазин)</p>
+
   
 			<hr className="divider" />
   
@@ -21,7 +22,7 @@ const Contacts = () => {
 			<hr className="divider" />
   
 			<h3>Email</h3>
-			<p><a href="mailto:grandleon777@mail.ru">vitmservice@mail.ru</a></p>
+			<p><a href="mailto:vitmservice@mail.ru">vitmservice@mail.ru</a></p>
 		  </div>
   
 		  {/* Google Map */}
