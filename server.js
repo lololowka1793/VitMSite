@@ -7,7 +7,9 @@ const bodyParser = require('body-parser');
 const app = express();
 
 // Используем CORS
-app.use(cors());
+app.use(cors({
+  origin: '*'  // Разрешить запросы с любого домена
+}));
 app.use(bodyParser.json());
 
 // Подключение к MongoDB
