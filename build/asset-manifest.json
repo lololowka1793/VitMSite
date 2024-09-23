@@ -1,0 +1,33 @@
+{
+  "files": {
+    "main.css": "/static/css/main.50a9a9c0.css",
+    "main.js": "/static/js/main.cf832683.js",
+    "static/js/787.8b11e2ca.chunk.js": "/static/js/787.8b11e2ca.chunk.js",
+    "static/media/image3.jpg": "/static/media/image3.55689d82c61304b6cd19.jpg",
+    "static/media/header-bg.png": "/static/media/header-bg.3b0a6ad114c3aef4ba80.png",
+    "static/media/podarok.png": "/static/media/podarok.c39a34bb9873f2cf0eeb.png",
+    "static/media/image4.jpg": "/static/media/image4.9faf20c1ee7b42802d04.jpg",
+    "static/media/image2.jpg": "/static/media/image2.27b24b1cc7d5eeeb4235.jpg",
+    "static/media/image1.jpg": "/static/media/image1.c1c505cccf04979b1e55.jpg",
+    "static/media/image6.jpg": "/static/media/image6.b5a0663caa5d6498bf3b.jpg",
+    "static/media/recimg4.jpg": "/static/media/recimg4.ff351e0b4c22d569f23b.jpg",
+    "static/media/image5.jpg": "/static/media/image5.0566773acb383f3b515d.jpg",
+    "static/media/recimg3.jpg": "/static/media/recimg3.f270a6972282a124bd79.jpg",
+    "static/media/recimg2.jpg": "/static/media/recimg2.39f35f39412025d9d104.jpg",
+    "static/media/recimg1.jpg": "/static/media/recimg1.174572d981e954e4fcaf.jpg",
+    "static/media/image8.jpg": "/static/media/image8.a750df20a0b1df7bce0c.jpg",
+    "static/media/image7.jpg": "/static/media/image7.740636c9506ecedd8a7e.jpg",
+    "static/media/phone.svg": "/static/media/phone.5c157d057d46a7cf6406172c00170b4b.svg",
+    "static/media/up_arrow.svg": "/static/media/up_arrow.deea19fb6af846403b93e0c76f93af4e.svg",
+    "index.html": "/index.html",
+    "static/media/email.svg": "/static/media/email.0e0b609b58cdcdfd255c4410a5eb7df5.svg",
+    "static/media/location.svg": "/static/media/location.ee340794605747ce6e6c76698974e080.svg",
+    "main.50a9a9c0.css.map": "/static/css/main.50a9a9c0.css.map",
+    "main.cf832683.js.map": "/static/js/main.cf832683.js.map",
+    "787.8b11e2ca.chunk.js.map": "/static/js/787.8b11e2ca.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.50a9a9c0.css",
+    "static/js/main.cf832683.js"
+  ]
+}
