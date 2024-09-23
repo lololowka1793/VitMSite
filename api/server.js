@@ -1,3 +1,5 @@
+const mongoose = require('mongoose');
+
 // Подключение к MongoDB
 const mongoURI = 'mongodb+srv://demosss1232:6werty@cluster0.zz5q2.mongodb.net/blog?retryWrites=true&w=majority&appName=Cluster0';
 mongoose.connect(mongoURI, {
