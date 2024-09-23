@@ -37,7 +37,7 @@ const BookingPage = () => {
 
     try {
       // Отправляем данные на сервер
-      const response = await fetch('https://vit-m-site.vercel.app/api/bookings', {
+      const response = await fetch('/api/bookings', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
