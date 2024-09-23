@@ -1,8 +1,17 @@
+// Функция, которая будет выполнена после полной загрузки страницы
 window.addEventListener('load', function () {
-    // Убираем preloader после загрузки контента
-    const preloader = document.getElementById('preloader');
-    const content = document.getElementById('content');
+    // Получаем элементы preloader и content
+    const preloader = document.getElementById('preloader'); // Элемент с анимацией
+    const content = document.getElementById('content');     // Основной контент страницы
     
-    preloader.style.display = 'none'; // Скрыть preloader
-    content.style.display = 'block'; // Показать контент
+    // Проверяем, что оба элемента существуют на странице
+    if (preloader && content) {
+        // Скрываем прелоадер
+        preloader.style.display = 'none';
+        
+        // Показываем контент
+        content.style.display = 'block';
+    } else {
+        console.error("Preloader or content elements not found");
+    }
 });
