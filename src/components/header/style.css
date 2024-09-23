@@ -1,0 +1,80 @@
+/* Header */
+.header {
+	padding: 40px 0;
+	min-height: 695px;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	background-color: var(--header-bg);
+	background-image: url('./../../img/header-bg.png');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+
+	color: var(--header-text);
+	text-align: center;
+}
+
+.header__wrapper {
+	padding: 0 15px;
+	max-width: 660px;
+}
+
+.header__title {
+	margin-bottom: 20px;
+	font-size: 40px;
+	font-weight: 700;
+	line-height: 1.4;
+}
+
+.header__title strong {
+	font-size: 80px;
+	font-weight: 700;
+}
+
+.header__title em {
+	font-style: normal;
+	color: var(--accent);
+}
+
+.header__text {
+	margin-bottom: 20px;
+	font-size: 36px;
+	line-height: 1.333
+	;
+}
+
+.header__text p + p {
+	margin-top: 0.5em;
+}
+
+.btn {
+	display: inline-block;
+	padding: 15px 30px;
+	font-size: 18px;
+	font-weight: 600;
+	color: #fff;
+	background-color: var(--accent); /* Используем акцентный цвет */
+	border: 2px solid var(--accent);
+	border-radius: 50px; /* Скругление углов для плавного эффекта */
+	text-transform: uppercase;
+	text-decoration: none;
+	transition: all 0.3s ease; /* Плавные переходы для всех изменений */
+  }
+  
+  .btn:hover {
+	background-color: transparent; /* Прозрачный фон при наведении */
+	color: var(--accent); /* Меняем цвет текста на акцентный */
+	border: 2px solid var(--accent); /* Сохраняем акцентную рамку */
+  }
+  
+  .btn:active {
+	transform: scale(0.98); /* Легкий эффект нажатия */
+  }
+  
+  .btn:focus {
+	outline: none;
+	box-shadow: 0 0 10px rgba(91, 96, 236, 0.5); /* Световая тень при фокусе */
+  }

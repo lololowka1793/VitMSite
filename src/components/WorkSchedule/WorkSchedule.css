@@ -1,0 +1,88 @@
+/* Основной контейнер для графика работы */
+.work-schedule-container {
+    background-color: #1b1b1b;
+    padding: 30px;
+    margin-top: 30px;
+    border-radius: 12px;
+    color: #ffffff;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Заголовок */
+  .work-schedule-title {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #5c62ec;
+  }
+  
+  /* Таблица */
+  .work-schedule-table {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    border-collapse: separate;
+    border-spacing: 0;
+    background-color: #2a2a2a;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  /* Заголовки таблицы */
+  .work-schedule-table th {
+    background-color: #5c62ec;
+    color: white;
+    padding: 15px;
+    font-size: 18px;
+    border: 1px solid #444;
+  }
+  
+  /* Закругление для верхних заголовков */
+  .work-schedule-table th:first-child {
+    border-top-left-radius: 8px;
+  }
+  
+  .work-schedule-table th:last-child {
+    border-top-right-radius: 8px;
+  }
+  
+  /* Строки таблицы */
+  .work-schedule-table td {
+    padding: 12px;
+    border: 1px solid #444;
+    font-size: 16px;
+    color: white;
+    width: 50%; /* Фиксированная ширина для предотвращения сдвигов */
+    text-align: left; /* Выровняем текст по левому краю */
+  }
+  
+  /* Чередование цветов строк */
+  .work-schedule-table tr:nth-child(even) {
+    background-color: #333;
+  }
+  
+  .work-schedule-table tr:nth-child(odd) {
+    background-color: #2a2a2a;
+  }
+  
+  /* Анимация при наведении */
+  .work-schedule-table tr:hover {
+    background-color: #5c62ec;
+    transition: background-color 0.3s ease;
+  }
+  
+  .work-schedule-table td:hover {
+    color: #ffffff;
+    /* font-weight: bold; Убрали жирность текста при наведении */
+    transition: color 0.3s ease;
+  }
+  
+  /* Закругление для нижних ячеек */
+  .work-schedule-table tr:last-child td:first-child {
+    border-bottom-left-radius: 8px;
+  }
+  
+  .work-schedule-table tr:last-child td:last-child {
+    border-bottom-right-radius: 8px;
+  }
+  

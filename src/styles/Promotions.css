@@ -1,0 +1,77 @@
+.promotions-section {
+    background: url('https://images.unsplash.com/photo-1603791452906-9ac9b3ca6aa6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDN8fGdpZnQlMjBib3h8fDB8fHx8MTYzNTk0OTYzOA&ixlib=rb-1.2.1&q=80&w=1080') no-repeat center center;
+    background-size: cover;
+    padding: 60px 0;
+    color: white;
+    text-align: center;
+  }
+  
+  .promotions-title {
+    font-size: 40px;
+    margin-bottom: 40px;
+    color: #ffcc00;
+    text-shadow: 2px 2px 8px #000;
+  }
+  
+  .promotions-grid {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .promotion-item {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 30px;
+    border-radius: 15px;
+    width: calc(50% - 10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .promotion-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+  }
+  
+  .promotion-title {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #ffcc00;
+    text-shadow: 1px 1px 4px #000;
+  }
+  
+  .promotion-description {
+    font-size: 18px;
+    color: #fff;
+    margin-bottom: 15px;
+  }
+  
+  .gift-icon {
+    position: absolute;
+    bottom: -30px;
+    right: -30px;
+    width: 100px;
+    height: 100px;
+    opacity: 0.7;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  
+  .promotion-item:hover .gift-icon {
+    opacity: 1;
+    transform: rotate(15deg) translateY(-5px);
+  }
+  
+  @media (max-width: 768px) {
+    .promotions-grid {
+      flex-direction: column;
+    }
+  
+    .promotion-item {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+  }
+  
