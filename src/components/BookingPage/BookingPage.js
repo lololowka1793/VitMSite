@@ -37,7 +37,7 @@ const BookingPage = () => {
 
     try {
       // Отправляем данные на сервер
-      const response = await fetch('http://localhost:5000/api/bookings', {
+      const response = await fetch('https://vast-thicket-91759-74b7ef0d8b23.herokuapp.com/api/bookings', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

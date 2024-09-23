@@ -34,6 +34,7 @@ const Booking = mongoose.model('Booking', bookingSchema);
 
 // Маршрут для отправки записи
 app.post('/api/bookings', (req, res) => {
+  console.log('Request body:', req.body);  // Логирование данных запроса
   const { fullName, phone, carBrand, year, reason } = req.body;
 
   const newBooking = new Booking({
