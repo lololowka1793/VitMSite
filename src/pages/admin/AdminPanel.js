@@ -1,17 +1,34 @@
 import React, { useEffect, useState } from 'react';
-import './AdminPanel.css'; // Подключаем файл стилей
+import './AdminPanel.css';
 
 const AdminPanel = () => {
   const [bookings, setBookings] = useState([]);
 
   useEffect(() => {
+    // Получаем текущие записи при загрузке страницы
     const fetchBookings = async () => {
-      const response = await fetch('/api/bookings'); // Получаем записи с сервера
+      const response = await fetch('/api/bookings');
       const data = await response.json();
-      setBookings(data); // Сохраняем записи в состоянии
+      setBookings(data);
     };
 
     fetchBookings();
+
+    // Создаем соединение с WebSocket сервером
+    const socket = new WebSocket('ws://your-server-url');
+
+    // Когда поступает сообщение от сервера
+    socket.onmessage = (event) => {
+      const message = JSON.parse(event.data);
+      if (message.type === 'newBooking') {
+        setBookings((prevBookings) => [...prevBookings, message.data]);
+      }
+    };
+
+    // Закрываем WebSocket при выходе со страницы
+    return () => {
+      socket.close();
+    };
   }, []);
 
   return (
