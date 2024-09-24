@@ -37,7 +37,7 @@ const BookingPage = () => {
 
     try {
       // Отправляем данные на сервер
-      const response = await fetch('/api/server', {
+      const response = await fetch('/api/bookings', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

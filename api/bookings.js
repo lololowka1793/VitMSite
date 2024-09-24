@@ -3,10 +3,15 @@ const mongoose = require('mongoose');
 // Подключаемся к MongoDB
 const mongoURI = 'mongodb+srv://demosss1232:6werty@cluster0.zz5q2.mongodb.net/blog?retryWrites=true&w=majority&appName=Cluster0';
 mongoose.connect(mongoURI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-}).then(() => console.log('MongoDB connected'))
-  .catch(err => console.log('Error connecting to MongoDB: ', err));
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    ssl: true
+  }).then(() => {
+    console.log('MongoDB connected');
+  }).catch(err => {
+    console.error('Error connecting to MongoDB:', err);
+  });
+  
 
 // Схема для записи
 const bookingSchema = new mongoose.Schema({
