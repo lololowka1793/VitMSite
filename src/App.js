@@ -11,8 +11,8 @@ import BookingPage from './components/BookingPage/BookingPage';
 import Recommendations from './pages/Recommendations';
 import Promotions from './pages/Promotions';
 import ScrollToTopButton from "./components/ScrollToTopButton/ScrollToTopButton";
-import AdminLogin from './pages/AdminLogin'; 
-import AdminPanel from './pages/AdminPanel'; 
+import AdminLogin from './pages/admin/AdminLogin'; 
+import AdminPanel from './pages/admin/AdminPanel'; 
 
 function App() {
   const [isAdmin, setIsAdmin] = useState(false); // Состояние для проверки входа администратора
