@@ -3,12 +3,11 @@ import React, { useEffect, useState } from 'react';
 const AdminPanel = () => {
   const [bookings, setBookings] = useState([]);
 
-  // Загружаем список бронирований из MongoDB
   useEffect(() => {
     const fetchBookings = async () => {
-      const response = await fetch('/api/bookings');
+      const response = await fetch('/api/bookings'); // Получаем записи с сервера
       const data = await response.json();
-      setBookings(data);
+      setBookings(data); // Сохраняем записи в состоянии
     };
 
     fetchBookings();
@@ -16,11 +15,15 @@ const AdminPanel = () => {
 
   return (
     <div>
-      <h2>Панель администратора</h2>
+      <h2>Онлайн записи</h2>
       <ul>
         {bookings.map((booking) => (
           <li key={booking._id}>
-            {booking.fullName} - {booking.carBrand} ({booking.phone})
+            <p>ФИО: {booking.fullName}</p>
+            <p>Телефон: {booking.phone}</p>
+            <p>Марка автомобиля: {booking.carBrand}</p>
+            <p>Год выпуска: {booking.year}</p>
+            <p>Причина: {booking.reason}</p>
           </li>
         ))}
       </ul>

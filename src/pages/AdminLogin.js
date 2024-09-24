@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Используем для перенаправления
+import { useNavigate } from 'react-router-dom';
 
 const AdminLogin = () => {
   const [username, setUsername] = useState('');
@@ -20,9 +20,14 @@ const AdminLogin = () => {
     });
 
     if (response.ok) {
-      navigate('/admin-panel'); // Перенаправляем на панель при успешном входе
+      const data = await response.json();
+      if (data.success) {
+        navigate('/admin-panel'); // Перенаправляем на панель при успешном входе
+      } else {
+        setError('Неправильный логин или пароль');
+      }
     } else {
-      setError('Неправильный логин или пароль');
+      setError('Произошла ошибка на сервере');
     }
   };
 
