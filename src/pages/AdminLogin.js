@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../styles/AdminLogin.css'; // Подключаем стили
+import './AdminLogin.css'; // Подключаем файл стилей
 
-const AdminLogin = ({ setIsAdmin }) => { 
+const AdminLogin = ({ setIsAdmin }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -11,6 +11,7 @@ const AdminLogin = ({ setIsAdmin }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Отправляем данные на сервер для проверки
     const response = await fetch('/api/admin-login', {
       method: 'POST',
       headers: {
@@ -22,8 +23,8 @@ const AdminLogin = ({ setIsAdmin }) => {
     if (response.ok) {
       const data = await response.json();
       if (data.success) {
-        setIsAdmin(true);
-        navigate('/admin-panel');
+        setIsAdmin(true); // Обновляем состояние админа
+        navigate('/admin-panel'); // Перенаправляем на панель при успешном входе
       } else {
         setError('Неправильный логин или пароль');
       }
@@ -33,35 +34,31 @@ const AdminLogin = ({ setIsAdmin }) => {
   };
 
   return (
-    <div className="admin-login-container">
-      <div className="login-box">
+    <div className="login-container">
+      <div className="login-form">
         <h2>Вход для администратора</h2>
-        <form onSubmit={handleSubmit} className="login-form">
-          <div className="input-group">
-            <label htmlFor="username">Логин:</label>
+        <form onSubmit={handleSubmit}>
+          <label>
+            Логин:
             <input
-              id="username"
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               placeholder="Введите логин"
-              required
             />
-          </div>
-          <div className="input-group">
-            <label htmlFor="password">Пароль:</label>
+          </label>
+          <label>
+            Пароль:
             <input
-              id="password"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Введите пароль"
-              required
             />
-          </div>
-          <button type="submit" className="login-btn">Войти</button>
-          {error && <p className="error-message">{error}</p>}
+          </label>
+          <button type="submit">Войти</button>
         </form>
+        {error && <p style={{ color: 'red' }}>{error}</p>}
       </div>
     </div>
   );
