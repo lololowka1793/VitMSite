@@ -8,8 +8,10 @@ const AdminPanel = () => {
   useEffect(() => {
     // Функция для воспроизведения звука
     const playSound = () => {
-      const audio = new Audio('../../sounds/notification.mp3'); // Путь к звуковому файлу
-      audio.play();
+      const audio = new Audio('/sounds/notification.mp3'); // Путь к звуковому файлу
+      audio.play().catch((error) => {
+        console.error('Ошибка воспроизведения звука:', error);
+      });
     };
 
     // Функция для получения данных с сервера
@@ -17,7 +19,7 @@ const AdminPanel = () => {
       try {
         const response = await fetch('/api/bookings');
         const data = await response.json();
-        
+
         // Если количество записей увеличилось, играем звук
         if (data.length > previousBookingsLength.current) {
           playSound();
