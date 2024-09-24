@@ -36,7 +36,7 @@ app.use(basicAuth({
 }));
 
 // Маршрут для получения всех записей
-app.get('/api/bookings', async (req, res) => {
+app.get('/api/admin/bookings', async (req, res) => {
   try {
     const bookings = await Booking.find();
     res.status(200).json(bookings);
