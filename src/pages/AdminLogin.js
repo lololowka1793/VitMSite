@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import '../styles/AdminLogin.css'; // Подключаем стили
 
-const AdminLogin = () => {
+const AdminLogin = ({ setIsAdmin }) => { 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -10,7 +11,6 @@ const AdminLogin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Отправляем данные на сервер для проверки
     const response = await fetch('/api/admin-login', {
       method: 'POST',
       headers: {
@@ -22,7 +22,8 @@ const AdminLogin = () => {
     if (response.ok) {
       const data = await response.json();
       if (data.success) {
-        navigate('/admin-panel'); // Перенаправляем на панель при успешном входе
+        setIsAdmin(true);
+        navigate('/admin-panel');
       } else {
         setError('Неправильный логин или пароль');
       }
@@ -32,28 +33,36 @@ const AdminLogin = () => {
   };
 
   return (
-    <div>
-      <h2>Админ Вход</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Логин:
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </label>
-        <label>
-          Пароль:
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </label>
-        <button type="submit">Войти</button>
-      </form>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+    <div className="admin-login-container">
+      <div className="login-box">
+        <h2>Вход для администратора</h2>
+        <form onSubmit={handleSubmit} className="login-form">
+          <div className="input-group">
+            <label htmlFor="username">Логин:</label>
+            <input
+              id="username"
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              placeholder="Введите логин"
+              required
+            />
+          </div>
+          <div className="input-group">
+            <label htmlFor="password">Пароль:</label>
+            <input
+              id="password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Введите пароль"
+              required
+            />
+          </div>
+          <button type="submit" className="login-btn">Войти</button>
+          {error && <p className="error-message">{error}</p>}
+        </form>
+      </div>
     </div>
   );
 };
