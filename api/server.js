@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const express = require('express');
 const bodyParser = require('body-parser');
 const basicAuth = require('express-basic-auth'); // Для базовой авторизации
-const WebSocket = require('ws'); // WebSocket для реального времени
 
 const app = express();
 app.use(bodyParser.json()); // Для обработки JSON данных
@@ -13,7 +12,7 @@ mongoose.connect(mongoURI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 }).then(() => console.log('MongoDB connected'))
-  .catch(err => console.log('Error connecting to MongoDB:', err));
+  .catch(err => console.log('Error connecting to MongoDB: ', err));
 
 // Модель для записи
 const Booking = mongoose.model('Booking', new mongoose.Schema({
@@ -35,9 +34,6 @@ app.use(basicAuth({
   challenge: true, // Вызов браузера для ввода логина/пароля
   unauthorizedResponse: (req) => 'Неправильные учетные данные' // Сообщение об ошибке
 }));
-
-// Создаем WebSocket сервер
-const wss = new WebSocket.Server({ noServer: true });
 
 // Маршрут для получения всех записей
 app.get('/api/admin/bookings', async (req, res) => {
@@ -65,30 +61,10 @@ app.post('/api/bookings', async (req, res) => {
   try {
     await newBooking.save();
     res.status(201).json({ message: 'Запись успешно сохранена' });
-
-    // Уведомляем все подключенные WebSocket клиенты о новой записи
-    wss.clients.forEach(client => {
-      if (client.readyState === WebSocket.OPEN) {
-        client.send(JSON.stringify({ type: 'newBooking', data: newBooking }));
-      }
-    });
   } catch (err) {
     console.error('Ошибка при сохранении записи:', err);
     res.status(500).json({ error: 'Ошибка сервера' });
   }
 });
 
-// Настройка WebSocket для обновлений в реальном времени
-wss.on('connection', (ws) => {
-  console.log('Подключен новый WebSocket клиент');
-});
-
-// Подключаем WebSocket к HTTP серверу
-const server = app.listen(5000, () => console.log('Server running on port 5000'));
-server.on('upgrade', (request, socket, head) => {
-  wss.handleUpgrade(request, socket, head, (ws) => {
-    wss.emit('connection', ws, request);
-  });
-});
-
-module.exports = server;
+module.exports = app; // Экспортируем для использования в Vercel

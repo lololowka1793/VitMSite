@@ -5,30 +5,25 @@ const AdminPanel = () => {
   const [bookings, setBookings] = useState([]);
 
   useEffect(() => {
-    // Получаем текущие записи при загрузке страницы
+    // Функция для получения данных с сервера
     const fetchBookings = async () => {
-      const response = await fetch('/api/bookings');
-      const data = await response.json();
-      setBookings(data);
-    };
-
-    fetchBookings();
-
-    // Создаем соединение с WebSocket сервером
-    const socket = new WebSocket('wss://vit-m-site.vercel.app');
-
-    // Когда поступает сообщение от сервера
-    socket.onmessage = (event) => {
-      const message = JSON.parse(event.data);
-      if (message.type === 'newBooking') {
-        setBookings((prevBookings) => [...prevBookings, message.data]);
+      try {
+        const response = await fetch('/api/bookings');
+        const data = await response.json();
+        setBookings(data); // Сохраняем записи в состоянии
+      } catch (error) {
+        console.error('Ошибка при получении данных:', error);
       }
     };
 
-    // Закрываем WebSocket при выходе со страницы
-    return () => {
-      socket.close();
-    };
+    // Начальная загрузка данных
+    fetchBookings();
+
+    // Обновляем данные каждые 10 секунд
+    const interval = setInterval(fetchBookings, 10000); // 10000 = 10 секунд
+
+    // Очищаем интервал при выходе со страницы
+    return () => clearInterval(interval);
   }, []);
 
   return (
