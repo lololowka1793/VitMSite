@@ -26,7 +26,7 @@ const Booking = mongoose.model('Booking', new mongoose.Schema({
 
 // Базовая авторизация (логин и пароль)
 const adminCredentials = {
-  'admin': 'adminpassword123' // Здесь логин: пароль
+  'admin': '6werty' // Здесь логин: пароль
 };
 
 app.use(basicAuth({

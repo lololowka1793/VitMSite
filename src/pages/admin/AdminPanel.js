@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import './AdminPanel.css'; // Подключаем файл стилей
 
 const AdminPanel = () => {
   const [bookings, setBookings] = useState([]);
@@ -14,16 +15,16 @@ const AdminPanel = () => {
   }, []);
 
   return (
-    <div>
+    <div className="admin-panel-container">
       <h2>Онлайн записи</h2>
-      <ul>
+      <ul className="booking-list">
         {bookings.map((booking) => (
-          <li key={booking._id}>
-            <p>ФИО: {booking.fullName}</p>
-            <p>Телефон: {booking.phone}</p>
-            <p>Марка автомобиля: {booking.carBrand}</p>
-            <p>Год выпуска: {booking.year}</p>
-            <p>Причина: {booking.reason}</p>
+          <li key={booking._id} className="booking-item">
+            <p><strong>ФИО:</strong> {booking.fullName}</p>
+            <p><strong>Телефон:</strong> {booking.phone}</p>
+            <p><strong>Марка автомобиля:</strong> {booking.carBrand}</p>
+            <p><strong>Год выпуска:</strong> {booking.year}</p>
+            <p><strong>Причина:</strong> {booking.reason}</p>
           </li>
         ))}
       </ul>
