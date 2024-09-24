@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const express = require('express');
 const bodyParser = require('body-parser');
-const basicAuth = require('express-basic-auth');
+const basicAuth = require('express-basic-auth'); // Для базовой авторизации
 
 const app = express();
 app.use(bodyParser.json()); // Для обработки JSON данных
@@ -14,7 +14,7 @@ mongoose.connect(mongoURI, {
 }).then(() => console.log('MongoDB connected'))
   .catch(err => console.log('Error connecting to MongoDB: ', err));
 
-// Модель для записей
+// Модель для записи
 const Booking = mongoose.model('Booking', new mongoose.Schema({
   fullName: String,
   phone: String,
@@ -24,22 +24,16 @@ const Booking = mongoose.model('Booking', new mongoose.Schema({
   date: { type: Date, default: Date.now }
 }));
 
-// Авторизация для маршрута входа в админ-панель
+// Базовая авторизация (логин и пароль)
 const adminCredentials = {
-  login: 'admin',
-  password: 'adminpassword123'
+  'admin': 'adminpassword123' // Здесь логин: пароль
 };
 
-// Маршрут для авторизации
-app.post('/api/admin-login', (req, res) => {
-  const { username, password } = req.body;
-
-  if (username === adminCredentials.login && password === adminCredentials.password) {
-    return res.status(200).json({ success: true });
-  } else {
-    return res.status(401).json({ success: false, message: 'Неправильный логин или пароль' });
-  }
-});
+app.use(basicAuth({
+  users: adminCredentials,
+  challenge: true, // Вызов браузера для ввода логина/пароля
+  unauthorizedResponse: (req) => 'Неправильные учетные данные' // Сообщение об ошибке
+}));
 
 // Маршрут для получения всех записей
 app.get('/api/bookings', async (req, res) => {
