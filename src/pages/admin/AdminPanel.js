@@ -8,7 +8,7 @@ const AdminPanel = () => {
   useEffect(() => {
     // Функция для воспроизведения звука
     const playSound = () => {
-      const audio = new Audio('../../sounds/notification.wav'); // Путь к звуковому файлу
+      const audio = new Audio('../../sounds/notification.mp3'); // Путь к звуковому файлу
       audio.play();
     };
 
