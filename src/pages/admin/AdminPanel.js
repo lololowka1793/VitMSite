@@ -1,15 +1,29 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import './AdminPanel.css';
 
 const AdminPanel = () => {
   const [bookings, setBookings] = useState([]);
+  const previousBookingsLength = useRef(0); // Храним количество записей до обновления
 
   useEffect(() => {
+    // Функция для воспроизведения звука
+    const playSound = () => {
+      const audio = new Audio('../../sounds/notification.wav'); // Путь к звуковому файлу
+      audio.play();
+    };
+
     // Функция для получения данных с сервера
     const fetchBookings = async () => {
       try {
         const response = await fetch('/api/bookings');
         const data = await response.json();
+        
+        // Если количество записей увеличилось, играем звук
+        if (data.length > previousBookingsLength.current) {
+          playSound();
+        }
+
+        previousBookingsLength.current = data.length; // Обновляем длину записей
         setBookings(data); // Сохраняем записи в состоянии
       } catch (error) {
         console.error('Ошибка при получении данных:', error);
@@ -20,7 +34,7 @@ const AdminPanel = () => {
     fetchBookings();
 
     // Обновляем данные каждые 10 секунд
-    const interval = setInterval(fetchBookings, 10000); // 10000 = 10 секунд
+    const interval = setInterval(fetchBookings, 10000); // 10 секунд
 
     // Очищаем интервал при выходе со страницы
     return () => clearInterval(interval);
