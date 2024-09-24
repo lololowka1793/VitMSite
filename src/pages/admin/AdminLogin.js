@@ -1,35 +1,67 @@
-import React, { useEffect, useState } from 'react';
-import './AdminPanel.css'; // Подключаем файл стилей
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import './AdminLogin.css'; // Подключаем файл стилей
 
-const AdminPanel = () => {
-  const [bookings, setBookings] = useState([]);
+const AdminLogin = ({ setIsAdmin }) => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchBookings = async () => {
-      const response = await fetch('/api/bookings'); // Получаем записи с сервера
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Отправляем данные на сервер для проверки
+    const response = await fetch('/api/admin-login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ username, password }),
+    });
+
+    if (response.ok) {
       const data = await response.json();
-      setBookings(data); // Сохраняем записи в состоянии
-    };
-
-    fetchBookings();
-  }, []);
+      if (data.success) {
+        setIsAdmin(true); // Обновляем состояние админа
+        navigate('/admin-panel'); // Перенаправляем на панель при успешном входе
+      } else {
+        setError('Неправильный логин или пароль');
+      }
+    } else {
+      setError('Произошла ошибка на сервере');
+    }
+  };
 
   return (
-    <div className="admin-panel-container">
-      <h2>Онлайн записи</h2>
-      <ul className="booking-list">
-        {bookings.map((booking) => (
-          <li key={booking._id} className="booking-item">
-            <p><strong>ФИО:</strong> {booking.fullName}</p>
-            <p><strong>Телефон:</strong> {booking.phone}</p>
-            <p><strong>Марка автомобиля:</strong> {booking.carBrand}</p>
-            <p><strong>Год выпуска:</strong> {booking.year}</p>
-            <p><strong>Причина:</strong> {booking.reason}</p>
-          </li>
-        ))}
-      </ul>
+    <div className="login-container">
+      <div className="login-form">
+        <h2>Вход для администратора</h2>
+        <form onSubmit={handleSubmit}>
+          <label>
+            Логин:
+            <input
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              placeholder="Введите логин"
+            />
+          </label>
+          <label>
+            Пароль:
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Введите пароль"
+            />
+          </label>
+          <button type="submit">Войти</button>
+        </form>
+        {error && <p style={{ color: 'red' }}>{error}</p>}
+      </div>
     </div>
   );
 };
 
-export default AdminPanel;
+export default AdminLogin;
