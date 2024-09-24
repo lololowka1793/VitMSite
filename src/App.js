@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'; // Добавляем useState сюда
+import "./styles/main.css";
+
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
 import Navbar from "./components/navbar/Navbar";
