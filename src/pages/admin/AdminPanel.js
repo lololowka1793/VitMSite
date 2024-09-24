@@ -15,7 +15,7 @@ const AdminPanel = () => {
     fetchBookings();
 
     // Создаем соединение с WebSocket сервером
-    const socket = new WebSocket('ws://your-server-url');
+    const socket = new WebSocket('wss://vit-m-site.vercel.app');
 
     // Когда поступает сообщение от сервера
     socket.onmessage = (event) => {
