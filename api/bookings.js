@@ -11,7 +11,6 @@ mongoose.connect(mongoURI, {
   }).catch(err => {
     console.error('Error connecting to MongoDB:', err);
   });
-  
 
 // Схема для записи
 const bookingSchema = new mongoose.Schema({
@@ -53,6 +52,21 @@ module.exports = async (req, res) => {
       res.status(201).json({ message: 'Запись успешно сохранена' });
     } catch (err) {
       console.error('Ошибка при сохранении записи:', err);
+      res.status(500).json({ error: 'Ошибка сервера' });
+    }
+  } else if (req.method === 'DELETE') {
+    // Обработка DELETE-запросов (удаление записи по ID)
+    const { id } = req.query; // Получаем ID записи из query параметров
+
+    try {
+      const result = await Booking.findByIdAndDelete(id); // Удаляем запись по _id
+      if (result) {
+        res.status(200).json({ message: 'Запись успешно удалена' });
+      } else {
+        res.status(404).json({ error: 'Запись не найдена' });
+      }
+    } catch (err) {
+      console.error('Ошибка при удалении записи:', err);
       res.status(500).json({ error: 'Ошибка сервера' });
     }
   } else {

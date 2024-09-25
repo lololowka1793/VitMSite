@@ -45,12 +45,12 @@ const AdminPanel = () => {
   // Функция для удаления записи
   const deleteBooking = async (id) => {
     try {
-      const response = await fetch(`/api/bookings/${id}`, {
+      const response = await fetch(`/api/bookings?id=${id}`, {
         method: 'DELETE',
       });
-
+  
       if (response.ok) {
-        // Удаляем запись из состояния
+        // Удаляем запись из списка после успешного удаления на сервере
         setBookings((prevBookings) => prevBookings.filter((booking) => booking._id !== id));
       } else {
         console.error('Ошибка при удалении записи');
@@ -59,6 +59,7 @@ const AdminPanel = () => {
       console.error('Ошибка при отправке запроса на удаление:', error);
     }
   };
+  
 
   return (
     <div className="admin-panel-container">
