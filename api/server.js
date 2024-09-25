@@ -67,4 +67,17 @@ app.post('/api/bookings', async (req, res) => {
   }
 });
 
+// Маршрут для удаления записи
+app.delete('/api/bookings/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    await Booking.findByIdAndDelete(id);
+    res.status(200).json({ message: 'Запись успешно удалена' });
+  } catch (err) {
+    console.error('Ошибка при удалении записи:', err);
+    res.status(500).json({ error: 'Ошибка при удалении записи' });
+  }
+});
+
 module.exports = app; // Экспортируем для использования в Vercel

@@ -42,6 +42,24 @@ const AdminPanel = () => {
     return () => clearInterval(interval);
   }, []);
 
+  // Функция для удаления записи
+  const deleteBooking = async (id) => {
+    try {
+      const response = await fetch(`/api/bookings/${id}`, {
+        method: 'DELETE',
+      });
+
+      if (response.ok) {
+        // Удаляем запись из состояния
+        setBookings((prevBookings) => prevBookings.filter((booking) => booking._id !== id));
+      } else {
+        console.error('Ошибка при удалении записи');
+      }
+    } catch (error) {
+      console.error('Ошибка при отправке запроса на удаление:', error);
+    }
+  };
+
   return (
     <div className="admin-panel-container">
       <h2>Онлайн записи</h2>
@@ -53,6 +71,7 @@ const AdminPanel = () => {
             <p><strong>Марка автомобиля:</strong> {booking.carBrand}</p>
             <p><strong>Год выпуска:</strong> {booking.year}</p>
             <p><strong>Причина:</strong> {booking.reason}</p>
+            <button className="delete-button" onClick={() => deleteBooking(booking._id)}>X</button>
           </li>
         ))}
       </ul>
