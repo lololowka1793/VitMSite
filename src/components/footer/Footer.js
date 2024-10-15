@@ -25,7 +25,7 @@ const Footer = () => {
             </div>
             <div className="contact-item">
               <img src={locationIcon} alt="Location" className="icon" />
-              <p>Адрес: Strada Alexei Russo 22, Cahul</p>
+              <p>Адрес: Strada Aleco Russo 22, Cahul</p>
             </div>
           </div>
 
